@@ -1,65 +1,31 @@
-package com.clarium.entity;
+package com.clarium.employeeDTO;
 
-import jakarta.persistence.*;
 
-import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
-@Entity
-@Table(name = "Employees_management")
-public class Employee {
+public class EmployeeDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
-
-    @Column(name = "first_Name")
-    private String FirstName;
-
-    @Column(name = "last_Name")
-    private String LastName;
-
-    @Column(name = "email")
+    private Integer id;
+    private String firstName;
+    private String lastName;
     private String email;
-
-    @Column(name = "phone_No")
     private String phoneNo;
-
-    @Column(name = "dob")
     private String dob;
-
-    @Column(name = "gender")
     private String gender;
-
-    @Column(name = "designation")
     private String designation;
-
-    @Column(name = "joining_Date")
     private Date joiningDate;
-
-    @Column(name = "employment_Type")
     private String employmentType;
-
-    @Column(name = "ctc")
     private String ctc;
 
-    @Column(name = "is_Active")
-    private Boolean isActive;
-
-    @Column(name = "created_Time")
-    private Timestamp createdTime;
-
-    @Column(name = "updated_Time")
-    private Timestamp updatedTime;
-
-
-    public Employee() {
+    public EmployeeDTO() {
     }
 
-    public Employee(Integer id, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc, Boolean isActive, Timestamp createdTime, Timestamp updatedTime) {
-        Id = id;
-        FirstName = firstName;
-        LastName = lastName;
+    public EmployeeDTO(Integer id, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phoneNo = phoneNo;
         this.dob = dob;
@@ -68,33 +34,30 @@ public class Employee {
         this.joiningDate = joiningDate;
         this.employmentType = employmentType;
         this.ctc = ctc;
-        this.isActive = isActive;
-        this.createdTime = createdTime;
-        this.updatedTime = updatedTime;
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -160,28 +123,5 @@ public class Employee {
     public void setCtc(String ctc) {
         this.ctc = ctc;
     }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
-
-    public Timestamp getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(Timestamp createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public Timestamp getUpdatedTime() {
-        return updatedTime;
-    }
-
-    public void setUpdatedTime(Timestamp updatedTime) {
-        this.updatedTime = updatedTime;
-    }
 }
+

@@ -2,18 +2,18 @@ package com.clarium.entity;
 
 import jakarta.persistence.*;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "Employees")
+@Table(name = "Employees_management")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
-    @Column(name = "firstName")
+    @Column(name = "first_Name")
     private String FirstName;
 
     @Column(name = "lastName")
@@ -49,8 +49,6 @@ public class Employee {
     @Column(name = "createdTime")
     private Timestamp CreatedTime;
 
-    @Column(name = "updatedTime")
-    private Timestamp UpdatedTime;
 
     public int getId() {
         return Id;
@@ -156,18 +154,10 @@ public class Employee {
         CreatedTime = createdTime;
     }
 
-    public Timestamp getUpdatedTime() {
-        return UpdatedTime;
-    }
-
-    public void setUpdatedAt(Timestamp updatedTime) {
-        UpdatedTime = updatedTime;
-    }
-
     public Employee() {
     }
 
-    public Employee(int id, String firstName, String lastName, String email, String phoneNo, String DOB, String gender, String designation, Date joiningDate, String employmentType, String CTC, Boolean isActive, Timestamp createdTime, Timestamp updatedTime) {
+    public Employee(int id, String firstName, String lastName, String email, String phoneNo, String DOB, String gender, String designation, Date joiningDate, String employmentType, String CTC, Boolean isActive, Timestamp createdTime) {
         Id = id;
         FirstName = firstName;
         LastName = lastName;
@@ -181,26 +171,7 @@ public class Employee {
         this.CTC = CTC;
         IsActive = isActive;
         CreatedTime = createdTime;
-        UpdatedTime = updatedTime;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "Id=" + Id +
-                ", FirstName='" + FirstName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", email='" + email + '\'' +
-                ", PhoneNo='" + PhoneNo + '\'' +
-                ", DOB='" + DOB + '\'' +
-                ", Gender='" + Gender + '\'' +
-                ", Designation='" + Designation + '\'' +
-                ", JoiningDate=" + JoiningDate +
-                ", EmploymentType='" + EmploymentType + '\'' +
-                ", CTC='" + CTC + '\'' +
-                ", IsActive=" + IsActive +
-                ", CreatedAt=" + CreatedTime +
-                ", UpdatedAt=" + UpdatedTime +
-                '}';
-    }
+
 }

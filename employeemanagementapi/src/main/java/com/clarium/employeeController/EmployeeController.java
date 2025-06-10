@@ -15,8 +15,11 @@ import java.util.Optional;
 @RequestMapping("/empmngmt/v1/api")
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService EmpService;
+    private final EmployeeService EmpService;
+
+    public EmployeeController(EmployeeService empService) {
+        EmpService = empService;
+    }
 
     @GetMapping("/getEmployee/{Id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("Id") int Id){

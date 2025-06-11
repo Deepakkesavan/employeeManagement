@@ -1,13 +1,11 @@
-package com.clarium.employeeDTO;
+package com.clarium.dto;
 
-
-import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
 
 public class EmployeeDTO {
 
-    private Integer id;
+    private Integer empid;
     private String firstName;
     private String lastName;
     private String email;
@@ -22,8 +20,8 @@ public class EmployeeDTO {
     public EmployeeDTO() {
     }
 
-    public EmployeeDTO(Integer id, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc) {
-        this.id = id;
+    public EmployeeDTO(Integer empid, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc) {
+        this.empid = empid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -36,12 +34,12 @@ public class EmployeeDTO {
         this.ctc = ctc;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getEmpid() {
+        return empid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEmpid(Integer empid) {
+        this.empid = empid;
     }
 
     public String getFirstName() {

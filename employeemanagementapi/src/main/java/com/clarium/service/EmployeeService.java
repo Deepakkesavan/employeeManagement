@@ -1,7 +1,6 @@
-package com.clarium.employeeService;
+package com.clarium.service;
 
-import com.clarium.employeeDTO.EmployeeDTO;
-import com.clarium.entity.Employee;
+import com.clarium.dto.EmployeeDTO;
 
 import java.util.List;
 import java.util.Optional;

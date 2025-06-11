@@ -1,6 +1,6 @@
 package com.clarium.mapper;
 
-import com.clarium.employeeDTO.EmployeeDTO;
+import com.clarium.dto.EmployeeDTO;
 import com.clarium.entity.Employee;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +11,8 @@ import java.util.Date;
 public class EmployeeMapper {
 
     public EmployeeDTO EmployeeEntitytoModel(Employee employee) {
-        EmployeeDTO employeeDTO = new EmployeeDTO(
-                employee.getId(),
+        return new EmployeeDTO(
+                employee.getEmpId(),
                 employee.getFirstName(),
                 employee.getLastName(),
                 employee.getEmail(),
@@ -25,7 +25,6 @@ public class EmployeeMapper {
                 employee.getCtc()
 
         );
-        return employeeDTO;
     }
 
 

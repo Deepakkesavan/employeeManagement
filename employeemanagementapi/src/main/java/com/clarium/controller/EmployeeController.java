@@ -1,9 +1,8 @@
-package com.clarium.employeeController;
+package com.clarium.controller;
 
 
-import com.clarium.employeeDTO.EmployeeDTO;
-import com.clarium.entity.Employee;
-import com.clarium.employeeService.EmployeeService;
+import com.clarium.dto.EmployeeDTO;
+import com.clarium.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/empmngmt/v1/api")
+@RequestMapping("/employeeManagement")
 public class EmployeeController {
 
     private final EmployeeService EmpService;
@@ -21,7 +20,7 @@ public class EmployeeController {
         EmpService = empService;
     }
 
-    @GetMapping("/getEmployee/{Id}")
+    @GetMapping("{Id}")
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable("Id") int Id){
         Optional<EmployeeDTO> employee = EmpService.getEmployeeById(Id);
         if (employee.isPresent()){
@@ -35,7 +34,9 @@ public class EmployeeController {
     public List<EmployeeDTO> getEmployees(){
         return EmpService.getAllEmployees();
     }
-    @PostMapping("/CreateEmployee")
+
+
+    @PostMapping()
     public String createEmployee(@RequestBody EmployeeDTO employeeDTO){
         Optional<EmployeeDTO> employee_ = EmpService.CreateEmployee(employeeDTO);
         if(employee_.isPresent()){
@@ -45,7 +46,7 @@ public class EmployeeController {
         }
     }
 
-    @PostMapping("/UpdateEmployee")
+    @PatchMapping()
     public String updateEmployee(@RequestBody EmployeeDTO employeeDTO) {
         Optional<EmployeeDTO> _employee = EmpService.updateEmployee(employeeDTO);
         if (_employee.isEmpty()){
@@ -55,7 +56,7 @@ public class EmployeeController {
         }
     }
 
-    @DeleteMapping("/DeleteEmployee/{Id}")
+    @DeleteMapping("{Id}")
     public String deleteEmployeeById(@PathVariable("Id") int Id) {
         return EmpService.deleteEmployee(Id);
     }

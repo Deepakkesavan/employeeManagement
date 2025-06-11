@@ -6,23 +6,23 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "Employees_management")
+@Table(name = "Employees_table_one")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer empId;
 
-    @Column(name = "first_Name")
-    private String FirstName;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column(name = "last_Name")
-    private String LastName;
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone_No")
+    @Column(name = "phone_no")
     private String phoneNo;
 
     @Column(name = "dob")
@@ -34,32 +34,32 @@ public class Employee {
     @Column(name = "designation")
     private String designation;
 
-    @Column(name = "joining_Date")
+    @Column(name = "joining_date")
     private Date joiningDate;
 
-    @Column(name = "employment_Type")
+    @Column(name = "employment_type")
     private String employmentType;
 
     @Column(name = "ctc")
     private String ctc;
 
-    @Column(name = "is_Active")
+    @Column(name = "is_active")
     private Boolean isActive;
 
-    @Column(name = "created_Time")
+    @Column(name = "created_time")
     private Timestamp createdTime;
 
-    @Column(name = "updated_Time")
+    @Column(name = "updated_time")
     private Timestamp updatedTime;
 
 
     public Employee() {
     }
 
-    public Employee(Integer id, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc, Boolean isActive, Timestamp createdTime, Timestamp updatedTime) {
-        Id = id;
-        FirstName = firstName;
-        LastName = lastName;
+    public Employee(Integer empId, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc, Boolean isActive, Timestamp createdTime, Timestamp updatedTime) {
+        this.empId = empId;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phoneNo = phoneNo;
         this.dob = dob;
@@ -73,28 +73,28 @@ public class Employee {
         this.updatedTime = updatedTime;
     }
 
-    public Integer getId() {
-        return Id;
+    public Integer getEmpId() {
+        return empId;
     }
 
-    public void setId(Integer id) {
-        Id = id;
+    public void setEmpId(Integer empId) {
+        this.empId = empId;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getEmail() {

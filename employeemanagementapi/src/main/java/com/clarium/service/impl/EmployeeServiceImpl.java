@@ -1,8 +1,9 @@
-package com.clarium.employeeService;
-import com.clarium.employeeDTO.EmployeeDTO;
+package com.clarium.service.impl;
+import com.clarium.dto.EmployeeDTO;
 import com.clarium.entity.Employee;
-import com.clarium.employeeRepository.EmployeeRepository;
+import com.clarium.dao.EmployeeRepository;
 import com.clarium.mapper.EmployeeMapper;
+import com.clarium.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         Employee employee = employeeMapper.EmployeeModeltoEntity(employeeDTO);
         // Set ID to 0 or null for new employees so Hibernate generates it
-        employee.setId(null);
+        employee.setEmpId(null);
 
         Employee savedEmployee = EmpRepo.save(employee);
         return Optional.of(employeeMapper.EmployeeEntitytoModel(savedEmployee));
@@ -54,8 +55,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<EmployeeDTO> updateEmployee(EmployeeDTO employeeDTO) {
-        if (EmpRepo.existsById(employeeDTO.getId())) {
-            Optional<Employee> existingEmployeeOpt = EmpRepo.findById(employeeDTO.getId());
+        if (EmpRepo.existsById(employeeDTO.getEmpid())) {
+            Optional<Employee> existingEmployeeOpt = EmpRepo.findById(employeeDTO.getEmpid());
             if (existingEmployeeOpt.isPresent()) {
                 Employee existingEmployee = existingEmployeeOpt.get();
                 existingEmployee.setFirstName(employeeDTO.getFirstName());

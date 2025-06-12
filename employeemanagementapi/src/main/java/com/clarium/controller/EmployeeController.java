@@ -2,6 +2,8 @@ package com.clarium.controller;
 
 
 import com.clarium.dto.EmployeeDTO;
+import com.clarium.entity.Employee;
+import com.clarium.service.EmployeeLoginService;
 import com.clarium.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +16,19 @@ import java.util.Optional;
 @RequestMapping("/employeeManagement")
 public class EmployeeController {
 
-    private final EmployeeService EmpService;
+    private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeService empService) {
-        EmpService = empService;
+    private final EmployeeLoginService employeeLoginService;
+
+    public EmployeeController(EmployeeService empService, EmployeeLoginService employeeLoginService) {
+        employeeService = empService;
+        this.employeeLoginService = employeeLoginService;
     }
 
     @GetMapping("{Id}")
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable("Id") int Id){
-        Optional<EmployeeDTO> employee = EmpService.getEmployeeById(Id);
+        Optional<EmployeeDTO> employee = employeeService.getEmployeeById(Id);
+
         if (employee.isPresent()){
             return new ResponseEntity<>(employee.get(), HttpStatus.OK);
         } else {
@@ -32,13 +38,14 @@ public class EmployeeController {
 
     @GetMapping("/getAllEmployees")
     public List<EmployeeDTO> getEmployees(){
-        return EmpService.getAllEmployees();
+        return employeeService.getAllEmployees();
     }
 
 
     @PostMapping()
     public String createEmployee(@RequestBody EmployeeDTO employeeDTO){
-        Optional<EmployeeDTO> employee_ = EmpService.CreateEmployee(employeeDTO);
+
+        Optional<EmployeeDTO> employee_ = employeeService.CreateEmployee(employeeDTO);
         if(employee_.isPresent()){
             return "The Employee Data has been Saved Successfully";
         } else {
@@ -48,7 +55,7 @@ public class EmployeeController {
 
     @PatchMapping()
     public String updateEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        Optional<EmployeeDTO> _employee = EmpService.updateEmployee(employeeDTO);
+        Optional<EmployeeDTO> _employee = employeeService.updateEmployee(employeeDTO);
         if (_employee.isEmpty()){
             return "The Employee does not Exists in Table.";
         } else {
@@ -58,6 +65,6 @@ public class EmployeeController {
 
     @DeleteMapping("{Id}")
     public String deleteEmployeeById(@PathVariable("Id") int Id) {
-        return EmpService.deleteEmployee(Id);
+        return employeeService.deleteEmployee(Id);
     }
 }

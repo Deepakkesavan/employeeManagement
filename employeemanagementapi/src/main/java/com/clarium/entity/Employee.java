@@ -1,6 +1,9 @@
 package com.clarium.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -44,11 +47,15 @@ public class Employee {
     private String ctc;
 
     @Column(name = "is_active")
-    private Boolean isActive;
+    private Boolean isActive=true;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
+    @CreationTimestamp
     @Column(name = "created_time")
     private Timestamp createdTime;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
+    @UpdateTimestamp
     @Column(name = "updated_time")
     private Timestamp updatedTime;
 
@@ -56,7 +63,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer empId, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc, Boolean isActive, Timestamp createdTime, Timestamp updatedTime) {
+    public Employee(Integer empId, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc, Boolean isActive) {
         this.empId = empId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -69,8 +76,6 @@ public class Employee {
         this.employmentType = employmentType;
         this.ctc = ctc;
         this.isActive = isActive;
-        this.createdTime = createdTime;
-        this.updatedTime = updatedTime;
     }
 
     public Integer getEmpId() {

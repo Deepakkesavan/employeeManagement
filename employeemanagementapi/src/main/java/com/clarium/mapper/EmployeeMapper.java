@@ -30,9 +30,8 @@ public class EmployeeMapper {
 
 
     public Employee EmployeeModeltoEntity(EmployeeDTO employeeDTO) {
-        Date date = new Date();
-        Timestamp timestamp = new Timestamp(date.getTime());
-        Employee employee = new Employee(
+        Employee existingEmployee = new Employee();
+        return new Employee(
                 0,
                 employeeDTO.getFirstName(),
                 employeeDTO.getLastName(),
@@ -44,12 +43,10 @@ public class EmployeeMapper {
                 employeeDTO.getJoiningDate(),
                 employeeDTO.getEmploymentType(),
                 employeeDTO.getCtc(),
-                true,
-                timestamp,
-                timestamp
+                true
+
 
         );
-        return employee;
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class EmployeeDTO {
 
-    private Integer empid;
+    private Integer empId;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,8 +20,8 @@ public class EmployeeDTO {
     public EmployeeDTO() {
     }
 
-    public EmployeeDTO(Integer empid, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc) {
-        this.empid = empid;
+    public EmployeeDTO(Integer empId, String firstName, String lastName, String email, String phoneNo, String dob, String gender, String designation, Date joiningDate, String employmentType, String ctc) {
+        this.empId = empId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,12 +34,12 @@ public class EmployeeDTO {
         this.ctc = ctc;
     }
 
-    public Integer getEmpid() {
-        return empid;
+    public Integer getEmpId() {
+        return empId;
     }
 
-    public void setEmpid(Integer empid) {
-        this.empid = empid;
+    public void setEmpId(Integer empId) {
+        this.empId = empId;
     }
 
     public String getFirstName() {

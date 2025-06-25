@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: EmployeeManagement
+
+  datasource:
+    url: jdbc:sqlserver://10.2.1.4:52752;databaseName=mule_training_db;encrypt=true;trustServerCertificate=true;
+    username: poc_dev_user
+    password: FeA2da1pfWBbPXVDK87z0t
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: deepakramoorthy@gmail.com
+    password: hsjgrapcadovhgrv
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    protocol: smtp
+
+server:
+  port: 8080
+
+mail-config:
+  fromAddress: deepakramoorthy@gmail.com
+  toAddress: deepakk@clarium.tech
+  subject: Weekly Report Of Employees

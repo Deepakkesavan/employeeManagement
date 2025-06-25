@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "Employee_table")
+@Table(name = "Employee_Details")
 public class Employee {
 
     @Id

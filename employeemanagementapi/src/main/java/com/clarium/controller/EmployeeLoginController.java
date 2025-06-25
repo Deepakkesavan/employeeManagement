@@ -2,19 +2,18 @@ package com.clarium.controller;
 
 import com.clarium.dto.EmployeeLoginDTO;
 import com.clarium.dto.WeeklyReportDTO;
-import com.clarium.entity.Employee;
 import com.clarium.service.EmployeeLoginService;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
+import static com.clarium.constants.ApplicationConstants.*;
 
 @RestController
-@RequestMapping("/employeemanagement")
+@RequestMapping("/employeeManagement")
 public class EmployeeLoginController {
 
     private final EmployeeLoginService employeeLoginService;
@@ -24,55 +23,28 @@ public class EmployeeLoginController {
     }
 
     @GetMapping("employeeLogin/{Id}")
-    public String getEmployeeLoginById(@PathVariable("Id") int Id, @RequestParam("login") boolean isLogin){
-
-        Optional<Employee> employeeDTO = employeeLoginService.createEmployeeLoginTime(Id,isLogin);
-
-        if (isLogin) {
-            return "Employee Login Successful";
-        } else {
-            return "Employee Logout Successful";
-        }
+    public ResponseEntity<String> createEmployeeLoginById(@PathVariable("Id") int Id, @RequestParam("login") boolean isLogin){
+        return ResponseEntity.ok(employeeLoginService.createEmployeeLoginTime(Id,isLogin));
     }
 
-    @GetMapping("LoginDetailswithempId")
-    public ResponseEntity<EmployeeLoginDTO> getEmployeeLoginDetails(
-            @RequestParam("empId") Integer empId,
-            @RequestParam("loginDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date loginDate
-            ) {
-
-        EmployeeLoginDTO loginDetails = employeeLoginService.getEmployeeLoginByEmpIdAndDate(empId, loginDate);
-        return ResponseEntity.ok(loginDetails);
-
+    @GetMapping("loginDetailsWithEmpId")
+    public ResponseEntity<EmployeeLoginDTO> getEmployeeLoginDetails(@RequestParam("empId") Integer empId, @RequestParam("loginDate") @DateTimeFormat(pattern = DATE_FORMAT_PATTERN) Date loginDate) {
+        return ResponseEntity.ok(employeeLoginService.getEmployeeLoginByEmpIdAndDate(empId, loginDate));
     }
 
-    @GetMapping("/DetailsWithDate")
-    public List<EmployeeLoginDTO> getEmployeeLoginDetailswithDate(
-            @RequestParam("loginDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date loginDate
-    ){
-        List<EmployeeLoginDTO> employeeLoginDTOS = employeeLoginService.getListOfEmployeeLogin(loginDate);
-        return  employeeLoginDTOS;
+    @GetMapping("loginDetailsWithDate")
+    public ResponseEntity<List<EmployeeLoginDTO>> getEmployeeLoginDetailsWithDate(@RequestParam("loginDate") @DateTimeFormat(pattern = DATE_FORMAT_PATTERN) Date loginDate){
+        return ResponseEntity.ok(employeeLoginService.getListOfEmployeeLogin(loginDate));
     }
 
-    @GetMapping("/getLast5Days")
-    public List<EmployeeLoginDTO> getEmployeeLoginsForLast5Days(){
-        List<EmployeeLoginDTO> employeeLoginDTOS = employeeLoginService.getEmployeeLoginsForLast5Days();
-        return employeeLoginDTOS;
-    }
-
-    @GetMapping("/weekly-report")
+    @GetMapping("weekly-report")
     public ResponseEntity<List<WeeklyReportDTO>> getWeeklyReport() {
-        try {
-            List<WeeklyReportDTO> weeklyReport = employeeLoginService.getWeeklyReport();
-            return ResponseEntity.ok(weeklyReport);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        return ResponseEntity.ok(employeeLoginService.getWeeklyReport());
     }
 
     @GetMapping("sendmail")
-    public String sendmail(){
-        return employeeLoginService.sendSimpleMail();
+    public ResponseEntity<String> sendmail() {
+        return ResponseEntity.ok(employeeLoginService.sendSimpleMail());
     }
 
 }

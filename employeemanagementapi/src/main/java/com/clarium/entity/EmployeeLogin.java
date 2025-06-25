@@ -6,7 +6,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 
@@ -36,25 +35,25 @@ public class EmployeeLogin {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
     @CreationTimestamp
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    @Column(name = "created_time")
+    private Timestamp createdTime;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
     @UpdateTimestamp
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    @Column(name = "updated_time")
+    private Timestamp updatedTime;
 
     public EmployeeLogin() {
     }
 
-    public EmployeeLogin(Integer loginId, Employee employee, Date loginDate, Timestamp loginTime, Timestamp logoutTime, Timestamp createdAt, Timestamp updatedAt) {
+    public EmployeeLogin(Integer loginId, Employee employee, Date loginDate, Timestamp loginTime, Timestamp logoutTime, Timestamp createdTime, Timestamp updatedTime) {
         this.loginId = loginId;
         this.employee = employee;
         this.loginDate = loginDate;
         this.loginTime = loginTime;
         this.logoutTime = logoutTime;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.createdTime = createdTime;
+        this.updatedTime = updatedTime;
     }
 
     public Integer getLoginId() {
@@ -97,19 +96,19 @@ public class EmployeeLogin {
         this.logoutTime = logoutTime;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedTime(Timestamp createdTime) {
+        this.createdTime = createdTime;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdatedTime() {
+        return updatedTime;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdatedTime(Timestamp updatedTime) {
+        this.updatedTime = updatedTime;
     }
 }
